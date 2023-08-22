@@ -5,6 +5,9 @@
     "build": "next build",
     "start": "next start"
   },
+  "imports": {
+    "#*": "./*"
+  },
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "latest",
     "@supabase/supabase-js": "latest",
