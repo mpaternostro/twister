@@ -27,7 +27,7 @@ export default function Login() {
 
       <form
         className="flex w-full flex-1 flex-col justify-center gap-2 text-foreground"
-        action="/auth/sign-in"
+        action="/auth/sign-up"
         method="post"
       >
         <label className="text-md" htmlFor="email">
@@ -44,23 +44,47 @@ export default function Login() {
         <label className="text-md" htmlFor="password">
           Password
         </label>
+        <p className="-mt-1 text-sm" id="password-description">
+          Minimum 6 characters.
+        </p>
         <input
           className="mb-6 rounded-md border bg-inherit px-4 py-2"
           id="password"
+          aria-describedby="password-description"
           type="password"
           name="password"
           placeholder="••••••••"
+          minLength={6}
           required
         />
-        <button className="mb-2 rounded bg-green-700 px-4 py-2 text-white">
-          Sign In
+        <label className="text-md" htmlFor="name">
+          Name
+        </label>
+        <input
+          className="mb-6 rounded-md border bg-inherit px-4 py-2"
+          id="name"
+          name="name"
+          placeholder="John Doe"
+          required
+        />
+        <label className="text-md" htmlFor="handle">
+          Handle
+        </label>
+        <p className="-mt-1 text-sm" id="handle-description">
+          Only letters, numbers and underscores are allowed.
+        </p>
+        <input
+          className="mb-6 rounded-md border bg-inherit px-4 py-2"
+          id="handle"
+          aria-describedby="handle-description"
+          name="handle"
+          placeholder="johndoe"
+          pattern="[a-zA-Z0-9_]{3,}"
+          required
+        />
+        <button className="mb-2 rounded border bg-blue-700 px-4 py-2 text-white">
+          Sign Up
         </button>
-        <a href="/sign-up">
-          Don&apos;t have an account?
-          <span className="ml-1 text-indigo-600 hover:underline">
-            Sign up here.
-          </span>
-        </a>
         <Messages />
       </form>
     </div>

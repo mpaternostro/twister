@@ -9,17 +9,24 @@ export async function POST(request: Request) {
   const formData = await request.formData();
   const email = String(formData.get("email"));
   const password = String(formData.get("password"));
+  const initialName = String(formData.get("name"));
+  const initialHandle = String(formData.get("handle"));
   const supabase = createRouteHandlerClient({ cookies });
 
   const { error } = await supabase.auth.signUp({
     email,
     password,
     options: {
+      data: {
+        initial_name: initialName,
+        initial_handle: initialHandle,
+      },
       emailRedirectTo: `${requestUrl.origin}/auth/callback`,
     },
   });
 
   if (error) {
+    // TODO: log error in sentry on production
     return NextResponse.redirect(
       `${requestUrl.origin}/login?error=Could not authenticate user`,
       {
