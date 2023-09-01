@@ -3,10 +3,10 @@ import Messages from "./messages";
 
 export default function Login() {
   return (
-    <div className="flex w-full flex-1 flex-col justify-center gap-2 px-8 sm:max-w-md">
+    <main className="flex min-h-screen w-full flex-1 flex-col items-center justify-center gap-2 px-8 sm:mx-auto sm:max-w-md">
       <Link
         href="/"
-        className="group absolute left-8 top-8 flex items-center rounded-md bg-btn-background px-4 py-2 text-sm text-foreground no-underline hover:bg-btn-background-hover"
+        className="bg-btn-background hover:bg-btn-background-hover group absolute left-8 top-8 flex items-center rounded-md px-4 py-2 text-sm text-foreground no-underline"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -63,6 +63,6 @@ export default function Login() {
         </a>
         <Messages />
       </form>
-    </div>
+    </main>
   );
 }
