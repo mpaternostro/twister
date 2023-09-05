@@ -1,7 +1,6 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
 import Link from "next/link";
 import LogoutButton from "../../components/LogoutButton";
+import { getUser } from "#lib/server/get-user";
 import { ThemeSwitch } from "./ThemeSwitch";
 
 export default async function MainLayout({
@@ -9,11 +8,7 @@ export default async function MainLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const supabase = createServerComponentClient({ cookies });
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const user = await getUser();
   return (
     <section>
       <nav className="mb-4 flex h-16 w-full justify-center border-b border-b-foreground/10 lg:mb-8">

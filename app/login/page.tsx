@@ -1,7 +1,14 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { getUser } from "#lib/server/get-user";
 import Messages from "./messages";
 
-export default function Login() {
+export default async function Login() {
+  const user = await getUser();
+  if (user) {
+    throw redirect("/");
+  }
+
   return (
     <main className="flex min-h-screen w-full flex-1 flex-col items-center justify-center gap-2 px-8 sm:mx-auto sm:max-w-md">
       <Link
