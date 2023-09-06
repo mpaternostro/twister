@@ -1,8 +1,6 @@
 "use client";
 
 import * as React from "react";
-// import { useTheme } from "next-themes";
-
 import { Button } from "#/components/ui/button";
 import {
   DropdownMenu,
@@ -11,10 +9,9 @@ import {
   DropdownMenuTrigger,
 } from "#/components/ui/dropdown-menu";
 import { Icon } from "#components/ui/icon";
+import { setThemeAction } from "./actions";
 
 export function ThemeSwitch() {
-  // const { setTheme } = useTheme();
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -30,10 +27,29 @@ export function ThemeSwitch() {
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem>Light</DropdownMenuItem>
-        <DropdownMenuItem>Dark</DropdownMenuItem>
-        <DropdownMenuItem>System</DropdownMenuItem>
+      <DropdownMenuContent align="end" asChild>
+        <form action={setThemeAction}>
+          <DropdownMenuItem asChild>
+            <button type="submit" name="theme" value="light" className="w-full">
+              Light
+            </button>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <button type="submit" name="theme" value="dark" className="w-full">
+              Dark
+            </button>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <button
+              type="submit"
+              name="theme"
+              value="system"
+              className="w-full"
+            >
+              System
+            </button>
+          </DropdownMenuItem>
+        </form>
       </DropdownMenuContent>
     </DropdownMenu>
   );

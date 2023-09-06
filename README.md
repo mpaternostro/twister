@@ -2,6 +2,14 @@
 
 This starter configures Supabase Auth to use cookies, making the user's session available throughout the entire Next.js app - Client Components, Server Components, Route Handlers, Server Actions and Middleware.
 
+## Theme
+
+Light, dark and system preference theme supported.
+
+On first request to this site, we set a cookie with the preferred color scheme and reload page, so we can apply styles accordingly without theme flash. User is allowed to choose Light or Dark mode, which sets another cookie.
+
+On future requests, we read these cookies to determine which styles to apply.
+
 ## Deploy your own
 
 The Vercel deployment will guide you through creating a Supabase account and project. After installation of the Supabase integration, all relevant environment variables will be set up so that the project is usable immediately after deployment 🚀
