@@ -1,6 +1,7 @@
 import Link from "next/link";
-import SupabaseLogo from "../../components/SupabaseLogo";
+
 import NextJsLogo from "../../components/NextJsLogo";
+import SupabaseLogo from "../../components/SupabaseLogo";
 
 const resources = [
   {

@@ -5,6 +5,7 @@
  * are needed by the server, but are only known by the browser.
  */
 import * as React from "react";
+
 import { setPrefersColorScheme } from "./server/theme";
 
 export const clientHints = {

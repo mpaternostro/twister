@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+
 import { getUser } from "#lib/server/get-user";
+
 import Messages from "./messages";
 
 export default async function Login() {

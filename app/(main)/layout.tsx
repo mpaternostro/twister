@@ -1,6 +1,8 @@
 import Link from "next/link";
-import LogoutButton from "../../components/LogoutButton";
+
 import { getUser } from "#lib/server/get-user";
+
+import LogoutButton from "../../components/LogoutButton";
 import { ThemeSwitch } from "./ThemeSwitch";
 
 export default async function MainLayout({

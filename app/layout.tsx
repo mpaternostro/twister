@@ -1,6 +1,7 @@
-import { getTheme } from "#lib/server/theme";
-import { ClientHintCheck } from "#lib/client-hints";
 import "./globals.css";
+
+import { ClientHintCheck } from "#lib/client-hints";
+import { getTheme } from "#lib/server/theme";
 
 export const metadata = {
   title: "Twister",
