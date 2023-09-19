@@ -10,16 +10,16 @@ export default async function MainLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const user = await getUser();
+  const { profile } = await getUser();
   return (
     <section>
       <nav className="mb-4 flex h-16 w-full justify-center border-b border-b-foreground/10 lg:mb-8">
         <div className="flex w-full max-w-4xl items-center justify-between p-3 text-sm text-foreground">
           <div />
           <div>
-            {user ? (
+            {profile ? (
               <div className="flex items-center gap-4">
-                Hey, {user.email}!
+                Hey, {profile.name}!
                 <LogoutButton />
               </div>
             ) : (

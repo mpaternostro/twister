@@ -6,7 +6,7 @@ import { getUser } from "#lib/server/get-user";
 import Messages from "./messages";
 
 export default async function Login() {
-  const user = await getUser();
+  const { user } = await getUser();
   if (user) {
     throw redirect("/");
   }
