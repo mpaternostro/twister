@@ -18,8 +18,10 @@ export async function getTheme(): Promise<Theme> {
 
 export async function setTheme(theme: Theme | "system") {
   if (theme === "system") {
-    // set empty to choose theme according to prefers color scheme
-    cookies().set(cookieNameSelectedTheme, "", { path: "/", maxAge: -1 });
+    if (cookies().has(cookieNameSelectedTheme)) {
+      // delete cookie to choose theme according to prefers color scheme
+      cookies().delete(cookieNameSelectedTheme);
+    }
   } else {
     cookies().set(cookieNameSelectedTheme, theme, { path: "/" });
   }
