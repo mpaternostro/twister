@@ -35,7 +35,7 @@ export default async function MainLayout({
         </div>
       </nav>
 
-      <main className="container min-h-screen w-full lg:flex lg:flex-col lg:items-center">
+      <main className="container min-h-[calc(100vh-5rem)] w-full lg:flex lg:min-h-[calc(100vh-6rem)] lg:flex-col lg:items-center">
         {children}
       </main>
     </section>
