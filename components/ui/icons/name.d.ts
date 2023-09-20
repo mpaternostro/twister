@@ -6,4 +6,5 @@ export type IconName =
   | "circle"
   | "laptop"
   | "moon"
+  | "pencil-1"
   | "sun";
