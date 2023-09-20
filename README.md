@@ -10,6 +10,13 @@ On first request to this site, we set a cookie with the preferred color scheme a
 
 On future requests, we read these cookies to determine which styles to apply.
 
+## Development
+
+To generate types from schema, run:
+`sh
+  supabase gen types typescript --local > types/supabase.ts
+`
+
 ## Deploy your own
 
 The Vercel deployment will guide you through creating a Supabase account and project. After installation of the Supabase integration, all relevant environment variables will be set up so that the project is usable immediately after deployment 🚀
