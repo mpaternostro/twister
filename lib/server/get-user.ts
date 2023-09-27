@@ -10,7 +10,19 @@ export async function getUser() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  const { data } = await supabase.from("profile").select("*").single();
+
+  if (user === null) {
+    return {
+      user: null,
+      profile: null,
+    };
+  }
+
+  const { data } = await supabase
+    .from("profile")
+    .select("*")
+    .eq("id", user.id)
+    .single();
   return {
     user,
     profile: data,
