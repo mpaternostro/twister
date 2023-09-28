@@ -47,7 +47,10 @@ export default function EditProfileForm({ profile }: Props) {
             />
           ) : (
             <div className="mx-auto w-fit rounded-full border bg-zinc-200">
-              <Icon name="person" className="h-36 w-36 p-6 text-zinc-600" />
+              <Icon
+                name="person"
+                className="-m-[1px] h-36 w-36 p-6 text-zinc-600"
+              />
             </div>
           )}
           <div className="absolute left-[calc(50%-20px)] top-[calc(50%-20px)] h-10 w-10 rounded-xl transition-all hover:bg-zinc-500 hover:bg-opacity-40">

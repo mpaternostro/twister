@@ -58,7 +58,7 @@ export default async function HandlePage({
   });
 
   return (
-    <div>
+    <div className="md:w-128">
       <div className="flex gap-3">
         {data.avatar_url ? (
           <Image
@@ -71,7 +71,10 @@ export default async function HandlePage({
           />
         ) : (
           <div className="mr-3 rounded-full border bg-zinc-200">
-            <Icon name="person" className="h-36 w-36 p-6 text-zinc-600" />
+            <Icon
+              name="person"
+              className="-m-[1px] h-36 w-36 p-6 text-zinc-600"
+            />
           </div>
         )}
         <section className="flex-1">
