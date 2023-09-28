@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { Button } from "#components/ui/button";
 import { Icon } from "#components/ui/icon";
+import { getUser } from "#lib/server/get-user";
 import { Database } from "#types/supabase";
 
 import { Twist } from "./Twist";
@@ -15,6 +16,7 @@ export default async function HandlePage({
   params: { handle: string };
 }) {
   const supabaseClient = createServerComponentClient<Database>({ cookies });
+  const { profile } = await getUser();
   const { data, error } = await supabaseClient
     .from("profile")
     .select(
@@ -77,9 +79,11 @@ export default async function HandlePage({
           <p className="text-zinc-500">{`@${params.handle}`}</p>
           {data.bio ? <p className="mt-2">{data.bio}</p> : null}
         </section>
-        <Button asChild>
-          <Link href={`/${params.handle}/edit`}>Edit</Link>
-        </Button>
+        {profile?.handle === params.handle ? (
+          <Button asChild>
+            <Link href={`/${params.handle}/edit`}>Edit</Link>
+          </Button>
+        ) : null}
       </div>
       <p className="mt-3">
         {`Fellow Twister since ${formatter.format(new Date(data.created_at))}.`}
