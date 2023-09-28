@@ -36,14 +36,20 @@ export default function EditProfileForm({ profile }: Props) {
       <div className="grid w-full max-w-sm items-center gap-1.5">
         <Label htmlFor="avatar">Avatar</Label>
         <div className="relative">
-          <Image
-            src={tempImage ?? `avatar/${profile.avatar_url}`}
-            alt={`${profile.name} profile photo`}
-            width={144}
-            height={144}
-            className="image mx-auto aspect-square h-36 w-36 rounded-full object-cover opacity-75"
-            priority
-          />
+          {tempImage || profile.avatar_url ? (
+            <Image
+              src={tempImage ?? `avatar/${profile.avatar_url}`}
+              alt={`${profile.name} profile photo`}
+              width={144}
+              height={144}
+              className="mx-auto aspect-square h-36 w-36 rounded-full object-cover opacity-75"
+              priority
+            />
+          ) : (
+            <div className="mx-auto w-fit rounded-full border bg-zinc-200">
+              <Icon name="person" className="h-36 w-36 p-6 text-zinc-600" />
+            </div>
+          )}
           <div className="absolute left-[calc(50%-20px)] top-[calc(50%-20px)] h-10 w-10 rounded-xl transition-all hover:bg-zinc-500 hover:bg-opacity-40">
             <Icon
               className="absolute left-[calc(50%-10px)] top-[calc(50%-10px)] h-5 w-5 text-white"

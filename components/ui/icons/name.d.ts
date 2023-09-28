@@ -7,4 +7,5 @@ export type IconName =
   | "laptop"
   | "moon"
   | "pencil-1"
+  | "person"
   | "sun";

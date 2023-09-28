@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "#components/ui/button";
+import { Icon } from "#components/ui/icon";
 import { Database } from "#types/supabase";
 
 import { Twist } from "./Twist";
@@ -30,6 +31,7 @@ export default async function HandlePage({
         text
       )`,
     )
+    .order("created_at", { foreignTable: "twist", ascending: false })
     .eq("handle", params.handle)
     .maybeSingle();
 
@@ -53,19 +55,23 @@ export default async function HandlePage({
     year: "numeric",
   });
 
-  // try avatar upload
-
   return (
     <div>
       <div className="flex gap-3">
-        <Image
-          src={`avatar/${data.avatar_url}`}
-          alt={`${data.name} profile photo`}
-          width={144}
-          height={144}
-          className="image mr-3 aspect-square h-36 w-36 rounded-full object-cover"
-          priority
-        />
+        {data.avatar_url ? (
+          <Image
+            src={`avatar/${data.avatar_url}`}
+            alt={`${data.name} profile photo`}
+            width={144}
+            height={144}
+            className="mr-3 aspect-square h-36 w-36 rounded-full object-cover"
+            priority
+          />
+        ) : (
+          <div className="mr-3 rounded-full border bg-zinc-200">
+            <Icon name="person" className="h-36 w-36 p-6 text-zinc-600" />
+          </div>
+        )}
         <section className="flex-1">
           <h1 className="text-lg font-medium">{data.name}</h1>
           <p className="text-zinc-500">{`@${params.handle}`}</p>
