@@ -3,6 +3,8 @@ import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 
+import { Avatar, AvatarFallback, AvatarImage } from "#/components/ui/avatar";
+import supabaseImgLoader from "#/other/supabase-image-loader";
 import { Button } from "#components/ui/button";
 import { Icon } from "#components/ui/icon";
 import { getUser } from "#lib/server/get-user";
@@ -60,23 +62,30 @@ export default async function HandlePage({
   return (
     <div className="md:w-128">
       <div className="flex gap-3">
-        {data.avatar_url ? (
-          <Image
-            src={`avatar/${data.avatar_url}`}
-            alt={`${data.name} profile photo`}
-            width={144}
-            height={144}
-            className="mr-3 aspect-square h-36 w-36 rounded-full object-cover"
-            priority
-          />
-        ) : (
-          <div className="mr-3 rounded-full border bg-zinc-200">
-            <Icon
-              name="person"
-              className="-m-[1px] h-36 w-36 p-6 text-zinc-600"
-            />
-          </div>
-        )}
+        <Avatar className="h-36 w-36">
+          {data.avatar_url ? (
+            <AvatarImage
+              className="object-cover"
+              // we need to pass the same children src to AvatarImage, otherwise it renders fallback
+              src={supabaseImgLoader({
+                src: `avatar/${data.avatar_url}`,
+                width: 144,
+              })}
+              asChild
+            >
+              <Image
+                src={`avatar/${data.avatar_url}`}
+                alt={`${data.name} profile photo`}
+                width={144}
+                height={144}
+                priority
+              />
+            </AvatarImage>
+          ) : null}
+          <AvatarFallback>
+            <Icon name="person" className="h-full w-full" />
+          </AvatarFallback>
+        </Avatar>
         <section className="flex-1">
           <h1 className="text-lg font-medium">{data.name}</h1>
           <p className="text-zinc-500">{`@${params.handle}`}</p>
@@ -94,19 +103,33 @@ export default async function HandlePage({
       <section className="mt-3 lg:mt-6">
         <h2 className="text-lg font-semibold text-primary">Latest Twists</h2>
         <ul className="space-y-4 md:space-y-6">
-          {data.twist.map((twist) => (
-            <li key={twist.id}>
-              <Twist
-                key={twist.id}
-                id={twist.id}
-                created_at={twist.created_at}
-                profile_handle={data.handle}
-                profile_name={data.name}
-              >
-                {twist.text}
-              </Twist>
-            </li>
-          ))}
+          {data.twist.length > 0 ? (
+            data.twist.map((twist) => (
+              <li key={twist.id}>
+                <Twist
+                  key={twist.id}
+                  id={twist.id}
+                  created_at={twist.created_at}
+                  profile_handle={data.handle}
+                  profile_name={data.name}
+                >
+                  {twist.text}
+                </Twist>
+              </li>
+            ))
+          ) : (
+            <div className="mt-9 text-center">
+              <h3 className="mt-2 font-semibold text-zinc-900">
+                You don&apos;t have any Twists.
+              </h3>
+              <p className="mt-1 text-sm text-zinc-600">
+                Start sharing with the world.
+              </p>
+              <div className="mt-6">
+                <Button>New Twist</Button>
+              </div>
+            </div>
+          )}
         </ul>
       </section>
     </div>
