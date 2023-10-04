@@ -1,9 +1,9 @@
 import Link from "next/link";
 
+import { Button } from "#components/ui/button";
 import { getUser } from "#lib/server/get-user";
 
-import LogoutButton from "../../components/LogoutButton";
-import { ThemeSwitch } from "./ThemeSwitch";
+import { ProfileDropdown } from "./ProfileDropdown";
 
 export default async function MainLayout({
   children, // will be a page or nested layout
@@ -14,24 +14,20 @@ export default async function MainLayout({
   return (
     <section>
       <nav className="mb-4 flex h-16 w-full justify-center border-b border-b-foreground/10 lg:mb-8">
-        <div className="flex w-full max-w-4xl items-center justify-between p-3 text-sm text-foreground">
-          <div />
-          <div>
-            {profile ? (
-              <div className="flex items-center gap-4">
-                Hey, {profile.name}!
-                <LogoutButton />
-              </div>
-            ) : (
-              <Link
-                href="/login"
-                className="bg-btn-background hover:bg-btn-background-hover rounded-md px-4 py-2 no-underline"
-              >
+        <div className="flex w-full max-w-4xl items-center justify-end gap-6 p-3 text-sm text-foreground">
+          {profile ? (
+            <ProfileDropdown
+              avatarUrl={profile.avatar_url}
+              handle={profile.handle}
+              userName={profile.name}
+            />
+          ) : (
+            <Button asChild>
+              <Link href="/login" className="rounded-md px-4 py-2 no-underline">
                 Login
               </Link>
-            )}
-          </div>
-          <ThemeSwitch />
+            </Button>
+          )}
         </div>
       </nav>
 

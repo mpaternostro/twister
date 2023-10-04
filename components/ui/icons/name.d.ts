@@ -4,6 +4,7 @@ export type IconName =
   | "check"
   | "chevron-right"
   | "circle"
+  | "exit"
   | "laptop"
   | "moon"
   | "pencil-1"
