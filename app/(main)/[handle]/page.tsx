@@ -3,8 +3,6 @@ import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Avatar, AvatarFallback, AvatarImage } from "#/components/ui/avatar";
-import supabaseImgLoader from "#/other/supabase-image-loader";
 import { Button } from "#components/ui/button";
 import { Icon } from "#components/ui/icon";
 import { getUser } from "#lib/server/get-user";
@@ -62,30 +60,23 @@ export default async function HandlePage({
   return (
     <div className="md:w-128">
       <div className="flex gap-3">
-        <Avatar className="h-36 w-36">
-          {data.avatar_url ? (
-            <AvatarImage
-              className="object-cover"
-              // we need to pass the same children src to AvatarImage, otherwise it renders fallback
-              src={supabaseImgLoader({
-                src: `avatar/${data.avatar_url}`,
-                width: 144,
-              })}
-              asChild
-            >
-              <Image
-                src={`avatar/${data.avatar_url}`}
-                alt={`${data.name} profile photo`}
-                width={144}
-                height={144}
-                priority
-              />
-            </AvatarImage>
-          ) : null}
-          <AvatarFallback>
-            <Icon name="person" className="h-full w-full" />
-          </AvatarFallback>
-        </Avatar>
+        {data.avatar_url ? (
+          <Image
+            src={`avatar/${data.avatar_url}`}
+            alt={`${data.name} profile photo`}
+            className="mr-3 aspect-square h-36 w-36 rounded-full object-cover"
+            width={144}
+            height={144}
+            priority
+          />
+        ) : (
+          <div className="mr-3 rounded-full border bg-zinc-200">
+            <Icon
+              name="person"
+              className="-m-[1px] h-36 w-36 p-6 text-zinc-600"
+            />
+          </div>
+        )}
         <section className="flex-1">
           <h1 className="text-lg font-medium">{data.name}</h1>
           <p className="text-zinc-500">{`@${params.handle}`}</p>
