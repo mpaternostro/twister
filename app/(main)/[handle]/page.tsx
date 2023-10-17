@@ -15,6 +15,7 @@ export default async function HandlePage({
 }: {
   params: { handle: string };
 }) {
+  cookies().getAll(); // see https://github.com/vercel/next.js/issues/56630
   const supabaseClient = createServerComponentClient<Database>({ cookies });
   const { profile } = await getUser();
   const { data, error } = await supabaseClient
