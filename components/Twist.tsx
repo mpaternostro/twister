@@ -45,10 +45,10 @@ export function Twist({
           priority
         />
       ) : (
-        <div className="mr-3 rounded-full border bg-zinc-200">
+        <div className="mr-3 rounded-full border bg-muted">
           <Icon
             name="person"
-            className="-m-[1px] h-12 w-12 p-6 text-zinc-600"
+            className="-m-[1px] h-12 w-12 p-6 text-muted-foreground"
           />
         </div>
       )}
@@ -73,10 +73,10 @@ export function Twist({
                     priority
                   />
                 ) : (
-                  <div className="mr-3 space-y-3 rounded-full border bg-zinc-200">
+                  <div className="mr-3 space-y-3 rounded-full border bg-muted">
                     <Icon
                       name="person"
-                      className="-m-[1px] h-16 w-16 p-6 text-zinc-600"
+                      className="-m-[1px] h-16 w-16 p-6 text-muted-foreground"
                     />
                   </div>
                 )}

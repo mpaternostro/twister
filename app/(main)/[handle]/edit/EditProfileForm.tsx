@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { type ChangeEventHandler, useState } from "react";
 
+import { Button } from "#components/ui/button";
 import { Icon } from "#components/ui/icon";
 import { Input } from "#components/ui/input";
 import { Label } from "#components/ui/label";
@@ -46,16 +47,17 @@ export default function EditProfileForm({ profile }: Props) {
               priority
             />
           ) : (
-            <div className="mx-auto w-fit rounded-full border bg-zinc-200">
+            <div className="mx-auto w-fit rounded-full border bg-muted">
               <Icon
                 name="person"
-                className="-m-[1px] h-36 w-36 p-6 text-zinc-600"
+                className="-m-[1px] h-36 w-36 p-6 text-muted-foreground"
               />
             </div>
           )}
-          <div className="absolute left-[calc(50%-20px)] top-[calc(50%-20px)] h-10 w-10 rounded-xl transition-all hover:bg-zinc-500 hover:bg-opacity-40">
+          <div className="absolute left-[calc(50%-72px)] top-0 h-36 w-36 rounded-full bg-primary/20"></div>
+          <div className="absolute left-[calc(50%-20px)] top-[calc(50%-20px)] h-10 w-10 rounded-xl bg-primary/20 transition-all hover:bg-primary/30">
             <Icon
-              className="absolute left-[calc(50%-10px)] top-[calc(50%-10px)] h-5 w-5 text-white"
+              className="absolute left-[calc(50%-10px)] top-[calc(50%-10px)] h-5 w-5 text-primary-foreground"
               name="pencil-1"
             />
             <input
@@ -106,9 +108,7 @@ export default function EditProfileForm({ profile }: Props) {
         />
       </div>
 
-      <button className="mb-2 rounded border bg-blue-700 px-4 py-2 text-white">
-        Update
-      </button>
+      <Button className="mb-2 rounded border px-4 py-2">Update</Button>
     </form>
   );
 }

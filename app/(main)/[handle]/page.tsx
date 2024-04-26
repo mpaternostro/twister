@@ -71,16 +71,16 @@ export default async function HandlePage({
             priority
           />
         ) : (
-          <div className="mr-3 rounded-full border bg-zinc-200">
+          <div className="mr-3 rounded-full border bg-muted">
             <Icon
               name="person"
-              className="-m-[1px] h-36 w-36 p-6 text-zinc-600"
+              className="-m-[1px] h-36 w-36 p-6 text-muted-foreground"
             />
           </div>
         )}
         <section className="flex-1">
           <h1 className="text-lg font-medium">{data.name}</h1>
-          <p className="opacity-75">{`@${params.handle}`}</p>
+          <p className="text-muted-foreground">{`@${params.handle}`}</p>
           {data.bio ? <p className="mt-2">{data.bio}</p> : null}
         </section>
         {ownProfile ? (
@@ -112,10 +112,8 @@ export default async function HandlePage({
           </div>
         ) : ownProfile ? (
           <div className="mt-9 text-center">
-            <p className="font-semibold text-zinc-900">
-              You don&apos;t have any Twists.
-            </p>
-            <p className="mt-1 text-sm text-zinc-600">
+            <p className="font-semibold">You don&apos;t have any Twists.</p>
+            <p className="mt-1 text-sm text-muted-foreground">
               Start sharing with the world.
             </p>
             <div className="mt-6">
@@ -123,7 +121,7 @@ export default async function HandlePage({
             </div>
           </div>
         ) : (
-          <p className="mt-9 text-center font-semibold text-zinc-900">
+          <p className="mt-9 text-center font-semibold">
             {`${data.name} doesn't have any Twists yet.`}
           </p>
         )}

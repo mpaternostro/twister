@@ -44,10 +44,10 @@ export function ProfileDropdown({ avatarUrl, handle, userName }: Props) {
             priority
           />
         ) : (
-          <div className="mr-3 rounded-full border bg-zinc-200">
+          <div className="mr-3 rounded-full border bg-muted">
             <Icon
               name="person"
-              className="-m-[1px] h-8 w-8 p-1.5 text-zinc-600"
+              className="-m-[1px] h-8 w-8 p-1.5 text-muted-foreground"
             />
           </div>
         )}
@@ -139,9 +139,9 @@ export function ProfileDropdown({ avatarUrl, handle, userName }: Props) {
           </DropdownMenuSub>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
-          <form action="/auth/sign-out" method="post">
-            <button className="w-full text-left">
+        <DropdownMenuItem className="p-0">
+          <form action="/auth/sign-out" method="post" className="w-full">
+            <button className="w-full px-2 py-1.5 text-left">
               <Icon name="exit" className="mr-2 h-4 w-4" />
               <span>Log out</span>
             </button>
