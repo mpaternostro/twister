@@ -57,7 +57,7 @@ WITH initial_users AS (
   RETURNING *
 )
 INSERT INTO "auth"."identities" (
-  id,
+  provider_id,
   user_id,
   identity_data,
   provider,
