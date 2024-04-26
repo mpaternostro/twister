@@ -45,14 +45,14 @@ export function Twist({
           priority
         />
       ) : (
-        <div className="mr-3 rounded-full border bg-muted">
+        <div className="mr-3 h-12 rounded-full border bg-muted">
           <Icon
             name="person"
-            className="-m-[1px] h-12 w-12 p-6 text-muted-foreground"
+            className="-m-[1px] h-12 w-12 p-2 text-muted-foreground"
           />
         </div>
       )}
-      <div>
+      <div className="flex-1">
         <p className="flex justify-between">
           <HoverCard openDelay={500}>
             <HoverCardTrigger asChild>

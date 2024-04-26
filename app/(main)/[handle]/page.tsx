@@ -65,13 +65,13 @@ export default async function HandlePage({
           <Image
             src={`avatar/${data.avatar_url}`}
             alt={`${data.name} profile photo`}
-            className="mr-3 aspect-square h-36 w-36 rounded-full object-cover"
+            className="aspect-square h-36 w-36 rounded-full object-cover"
             width={144}
             height={144}
             priority
           />
         ) : (
-          <div className="mr-3 rounded-full border bg-muted">
+          <div className="rounded-full border bg-muted">
             <Icon
               name="person"
               className="-m-[1px] h-36 w-36 p-6 text-muted-foreground"

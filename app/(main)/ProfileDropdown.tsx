@@ -44,7 +44,7 @@ export function ProfileDropdown({ avatarUrl, handle, userName }: Props) {
             priority
           />
         ) : (
-          <div className="mr-3 rounded-full border bg-muted">
+          <div className="rounded-full border bg-muted">
             <Icon
               name="person"
               className="-m-[1px] h-8 w-8 p-1.5 text-muted-foreground"
