@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    serverActions: true,
-  },
   eslint: {
     dirs: ["app", "lib", "components", "other"], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)
   },
