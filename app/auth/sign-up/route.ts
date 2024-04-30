@@ -1,8 +1,6 @@
-import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
-export const dynamic = "force-dynamic";
+import { createClient } from "#lib/supabase/server";
 
 export async function POST(request: Request) {
   const requestUrl = new URL(request.url);
@@ -11,7 +9,7 @@ export async function POST(request: Request) {
   const password = String(formData.get("password"));
   const initialName = String(formData.get("name"));
   const initialHandle = String(formData.get("handle"));
-  const supabase = createRouteHandlerClient({ cookies });
+  const supabase = createClient();
 
   const { error } = await supabase.auth.signUp({
     email,

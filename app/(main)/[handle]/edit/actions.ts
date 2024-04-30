@@ -1,11 +1,10 @@
 "use server";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { nanoid } from "nanoid/non-secure";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
 import { getUser } from "#lib/server/get-user";
+import { createClient } from "#lib/supabase/server";
 import { Database } from "#types/supabase";
 
 export async function updateProfile(formData: FormData) {
@@ -15,7 +14,7 @@ export async function updateProfile(formData: FormData) {
     return;
   }
 
-  const supabaseClient = createServerComponentClient<Database>({ cookies });
+  const supabaseClient = createClient<Database>();
   const schema = z.object({
     avatar: z.instanceof(Blob).nullable(),
     name: z.string(),

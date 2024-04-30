@@ -1,9 +1,8 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 
 import { Icon } from "#components/ui/icon";
+import { createClient } from "#lib/supabase/server";
 import { Database } from "#types/supabase";
 
 export default async function TwistPage({
@@ -11,8 +10,7 @@ export default async function TwistPage({
 }: {
   params: { id: string };
 }) {
-  cookies().getAll(); // see https://github.com/vercel/next.js/issues/56630
-  const supabaseClient = createServerComponentClient<Database>({ cookies });
+  const supabaseClient = createClient<Database>();
   const { data, error } = await supabaseClient
     .from("twist")
     .select(

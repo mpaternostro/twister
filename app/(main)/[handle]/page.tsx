@@ -1,5 +1,3 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,6 +5,7 @@ import { Twist } from "#components/Twist";
 import { Button } from "#components/ui/button";
 import { Icon } from "#components/ui/icon";
 import { getUser } from "#lib/server/get-user";
+import { createClient } from "#lib/supabase/server";
 import { Database } from "#types/supabase";
 
 export default async function HandlePage({
@@ -14,8 +13,7 @@ export default async function HandlePage({
 }: {
   params: { handle: string };
 }) {
-  cookies().getAll(); // see https://github.com/vercel/next.js/issues/56630
-  const supabaseClient = createServerComponentClient<Database>({ cookies });
+  const supabaseClient = createClient<Database>();
   const { profile } = await getUser();
   const { data, error } = await supabaseClient
     .from("profile")

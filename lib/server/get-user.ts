@@ -1,12 +1,9 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
-
+import { createClient } from "#lib/supabase/server";
 import { Database } from "#types/supabase";
 
 export async function getUser() {
   "use server";
-  cookies().getAll(); // see https://github.com/vercel/next.js/issues/56630
-  const supabase = createServerComponentClient<Database>({ cookies });
+  const supabase = createClient<Database>();
 
   const {
     data: { user },
