@@ -3,6 +3,9 @@ const nextConfig = {
   experimental: {
     serverActions: true,
   },
+  eslint: {
+    dirs: ["app", "lib", "components", "other"], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)
+  },
   images: {
     loader: "custom",
     loaderFile: "./other/supabase-image-loader.js",
