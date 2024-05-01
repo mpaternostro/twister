@@ -16,7 +16,7 @@ export async function updateProfile(formData: FormData) {
 
   const supabaseClient = createClient<Database>();
   const schema = z.object({
-    avatar: z.instanceof(Blob).nullable(),
+    avatar: z.instanceof(File).nullable(),
     name: z.string(),
     handle: z.string(),
     bio: z.string().min(3).nullable(),
@@ -27,7 +27,7 @@ export async function updateProfile(formData: FormData) {
   );
   for (const key in formEntries) {
     const value = formEntries[key];
-    if (value === "" || (value instanceof Blob && value.size === 0)) {
+    if (value === "" || (value instanceof File && value.size === 0)) {
       formEntries[key] = null;
     }
   }
@@ -37,7 +37,7 @@ export async function updateProfile(formData: FormData) {
     avatar_url?: string;
   };
 
-  if (avatar && avatar instanceof Blob) {
+  if (avatar && avatar instanceof File) {
     const randomId = nanoid(8);
     const fileExtension = avatar.name.split(".").at(-1);
     const filename = `${profile.id}-${randomId}.${fileExtension}`;
